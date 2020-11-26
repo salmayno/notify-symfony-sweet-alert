@@ -1,0 +1,16 @@
+services:
+    notify.producer.sweet_alert:
+        parent: 'notify.producer.abstract'
+        class: Notify\SweetAlert\Producer\SweetAlertProducer
+        tags:
+            - { name: 'notify.producer', alias: 'sweet_alert' }
+
+    notify.renderer.sweet_alert:
+        class: Notify\SweetAlert\Renderer\SweetAlertRenderer
+        arguments:
+            - '@notify.config'
+        tags:
+            - { name: 'notify.renderer', alias: 'sweet_alert' }
+
+    Notify\SweetAlert\Producer\SweetAlertProducer: '@notify.producer.sweet_alert'
+    Notify\SweetAlert\Renderer\SweetAlertRenderer: '@notify.renderer.sweet_alert'
